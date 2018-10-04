@@ -1,0 +1,22 @@
+{
+  "name": "loli",
+  "version": "1.0.0",
+  "description": "a tiny nodeJS unittest framework like true JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avengerandy/loli.git"
+  },
+  "keywords": [
+    "unittest"
+  ],
+  "author": "MazeR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/avengerandy/loli/issues"
+  },
+  "homepage": "https://github.com/avengerandy/loli#readme"
+}
