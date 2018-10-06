@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-module.exports = [
+module.exports.tests = [
     function test_1() {
         assert.equal("test_1", "test_1");
     },

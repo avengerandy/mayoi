@@ -8,7 +8,7 @@ const config = require(process.argv[2] === undefined ? "./config.js" : process.a
   simple tool that just use build-in function & async.js for test
 */
 
-//config.startFunction();
+config.startFunction();
 
 let allTest = [];
 
@@ -21,8 +21,14 @@ fs.readdirSync(config.root).filter(
 ).map(
     source => path.basename(source)
 ).forEach(sourceName => {
-    require("./" + sourceName).forEach(sourceFunction => {
-        allTest.push(testAbleDecorator(sourceFunction, sourceName));
+    let sourceFile = require("./" + sourceName)
+    sourceFile.tests.forEach(sourceFunction => {
+        let testFunction = testAbleDecorator(sourceFunction, sourceName);
+        testFunction.start = sourceFile.start;
+        testFunction.startEach = sourceFile.startEach;
+        testFunction.end = sourceFile.end;
+        testFunction.endEach = sourceFile.endEach;
+        allTest.push(testFunction);
     });
 });
 
@@ -40,7 +46,7 @@ async.waterfall(allTest, function() {
     console.log("----------------------------------------");
     console.log("◉　Report：" + newStep.pass + "／" + allTest.length);
     console.log("----------------------------------------");
-    //config.endFunction();
+    config.endFunction();
 });
 
 function testAbleDecorator(fun, sourceName) {

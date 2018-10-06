@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-module.exports = [
+module.exports.tests = [
     async function test_1() {
         let asyncFuncrion = new Promise(function (resolve, reject) {
             setTimeout(function () {
