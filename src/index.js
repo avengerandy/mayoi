@@ -1,13 +1,14 @@
 const fs = require("fs");
 const path = require("path");
-const config = require("./config.js");
 const async = require("async");
+const process = require("process");
+const config = require(process.argv[2] === undefined ? "./config.js" : process.argv[2]);
 
 /*
   simple tool that just use build-in function & async.js for test
 */
 
-config.startFunction();
+//config.startFunction();
 
 let allTest = [];
 
@@ -39,7 +40,7 @@ async.waterfall(allTest, function() {
     console.log("----------------------------------------");
     console.log("◉　Report：" + newStep.pass + "／" + allTest.length);
     console.log("----------------------------------------");
-    config.endFunction();
+    //config.endFunction();
 });
 
 function testAbleDecorator(fun, sourceName) {

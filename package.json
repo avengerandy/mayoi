@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/avengerandy/loli/issues"
   },
-  "homepage": "https://github.com/avengerandy/loli#readme"
+  "homepage": "https://github.com/avengerandy/loli#readme",
+  "dependencies": {
+    "async": "^2.6.1"
+  }
 }
