@@ -49,7 +49,7 @@ function testAbleDecorator(fun, sourceName, sourceFile) {
     return async function () {
         if (sourceName != newStep.sourceName) {
             //if (typeof newStep.nowFunction.end == 'function') newStep.nowFunction.end();
-            await sourceFile.start();
+            if (typeof sourceFile.start == 'function') await sourceFile.start();
             console.log("----------------------------------------");
             console.log(newStep.count + ". test " + sourceName);
             newStep.nowFunction = fun;
