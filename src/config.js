@@ -3,9 +3,15 @@ module.exports = {
     "root": "src",
     "ignore": [
         "index.js", 
-        "config.js"
+        "config.js",
+        "testAsynchronous.js"
     ],
     "printPass": true,
-    "startFunction": function() {},
-    "endFunction": function() {}
+    "startFunction": function() {
+        console.log("startFunction");
+    },
+    "endFunction": function() {
+        console.log("endFunction");
+    },
+    "functions": []
 }

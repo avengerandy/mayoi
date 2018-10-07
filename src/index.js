@@ -21,14 +21,9 @@ fs.readdirSync(config.root).filter(
 ).map(
     source => path.basename(source)
 ).forEach(sourceName => {
-    let sourceFile = require("./" + sourceName)
+    let sourceFile = require("./" + sourceName);
     sourceFile.tests.forEach(sourceFunction => {
-        let testFunction = testAbleDecorator(sourceFunction, sourceName);
-        testFunction.start = sourceFile.start;
-        testFunction.startEach = sourceFile.startEach;
-        testFunction.end = sourceFile.end;
-        testFunction.endEach = sourceFile.endEach;
-        allTest.push(testFunction);
+        allTest.push(testAbleDecorator(sourceFunction, sourceName, sourceFile));
     });
 });
 
@@ -38,6 +33,7 @@ console.log("◉　Test Start：");
 let newStep = {
     pass: 0, 
     sourceName: "", 
+    nowFunction: {}, 
     count: 1, 
     subCount: 1
 }
@@ -49,18 +45,23 @@ async.waterfall(allTest, function() {
     config.endFunction();
 });
 
-function testAbleDecorator(fun, sourceName) {
+function testAbleDecorator(fun, sourceName, sourceFile) {
     return async function () {
         if (sourceName != newStep.sourceName) {
+            //if (typeof newStep.nowFunction.end == 'function') newStep.nowFunction.end();
+            await sourceFile.start();
             console.log("----------------------------------------");
             console.log(newStep.count + ". test " + sourceName);
+            newStep.nowFunction = fun;
             newStep.sourceName = sourceName;
             newStep.count++;
             newStep.subCount = 1;
         }
         try {
+            await sourceFile.startEach();
             await fun();
             if (config.printPass) console.log("╠ " + newStep.subCount + "." + fun.name + "\t=> pass");
+            await sourceFile.endEach();
             newStep.pass++;
         } catch (error) {
             console.log("╠ " + "." + fun.name + "\t=> fail");
