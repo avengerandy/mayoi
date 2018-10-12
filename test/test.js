@@ -1,5 +1,2 @@
-try {
-    
-} catch (error) {
-    console.log(error);
-} 
+require("./testMock.js");
+require("./testRunIfFunction.js");

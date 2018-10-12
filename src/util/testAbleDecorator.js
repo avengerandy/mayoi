@@ -1,23 +1,20 @@
-const context = require("./context.js");
+const context = require("./Context.js");
 const runIfFunction = require("./runIfFunction.js");
 
 module.exports = function (fun, sourceName, sourceFile, printPass) {
     return async function () {
         if (sourceName != context.sourceName) {
-            await runIfFunction(context.nowFunction.end);
             await runIfFunction(sourceFile.start);
             console.log("----------------------------------------");
             console.log(context.count + ". test " + sourceName);
-            context.nowFunction = fun;
             context.sourceName = sourceName;
             context.count++;
             context.subCount = 1;
         }
+        await runIfFunction(sourceFile.startEach);
         try {
-            await runIfFunction(sourceFile.startEach);
             await fun();
             if (printPass) console.log("╠ " + context.subCount + "." + fun.name + "\t=> pass");
-            await runIfFunction(sourceFile.endEach);
             context.pass++;
         } catch (error) {
             console.log("╠ " + "." + fun.name + "\t=> fail");
@@ -26,6 +23,11 @@ module.exports = function (fun, sourceName, sourceFile, printPass) {
                 console.log("║　  ┝　" + i + "：" + error[i]);
             }
         }
+        await runIfFunction(sourceFile.endEach);
         context.subCount++;
+        context.nowCount++;
+        if (context.nowCount == context.allTsetCount) {
+            await runIfFunction(sourceFile.end);
+        }
     }
 }

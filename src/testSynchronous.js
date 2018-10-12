@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require("assert");
 
 module.exports.startEach = function() {
     console.log("startEach");
