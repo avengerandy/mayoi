@@ -15,7 +15,6 @@ let completeConfig = patchConfig({
     custom: "customConfig"
 });
 
-
 assert.deepEqual({
     "root": "test",
     "ignore": [

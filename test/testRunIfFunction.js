@@ -14,7 +14,7 @@ runIfFunction(realFunction).then((value) => {
 });
 
 runIfFunction(fakeFunction).then((value) => {
-    assert.equal("not a function", value);
+    assert.equal(undefined, value);
 }).catch((err) => {
     throw err
 });
