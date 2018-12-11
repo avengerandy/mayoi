@@ -1,5 +1,5 @@
 const assert = require("assert");
-const Mock = require("../src/util/Mock.js");
+const Mock = require("../src/Mock.js");
 
 let realFunction = function () {
     return "real";

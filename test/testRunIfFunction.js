@@ -1,5 +1,5 @@
 const assert = require("assert");
-const runIfFunction = require("../src/util/runIfFunction.js");
+const runIfFunction = require("../src/runIfFunction.js");
 
 let realFunction = function () {
     return "real";
