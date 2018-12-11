@@ -1,10 +1,7 @@
 const assert = require("assert");
 const runIfFunction = require("../src/runIfFunction.js");
 
-let realFunction = function () {
-    return "real";
-}
-
+let realFunction = () => "real";
 let fakeFunction = 5;
 
 runIfFunction(realFunction).then((value) => {

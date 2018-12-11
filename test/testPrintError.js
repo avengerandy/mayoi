@@ -4,9 +4,7 @@ const Mock = require("../src/Mock.js");
 
 let errorCache = "";
 
-console.log = Mock.mock(console.log, (log) => {
-    errorCache += `${log}\n`;
-});
+console.log = Mock.mock(console.log, (log) => errorCache += `${log}\n`);
 
 try {
     assert.equal(1, 2);

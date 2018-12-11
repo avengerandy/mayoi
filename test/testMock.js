@@ -1,13 +1,8 @@
 const assert = require("assert");
 const Mock = require("../src/Mock.js");
 
-let realFunction = function () {
-    return "real";
-}
-
-let fakeFunction = function () {
-    return "fake";
-}
+let realFunction = () => "real";
+let fakeFunction = () => "fake";
 
 assert.equal("real", realFunction());
 

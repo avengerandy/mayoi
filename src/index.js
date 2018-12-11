@@ -5,9 +5,9 @@ const getAllTestFiles = require("../src/getAllTestFiles.js");
 module.exports = function(config) {
     config = patchConfig(config);
     let testFiles = getAllTestFiles(config);
-    async.eachSeries(testFiles, (testFilePath) => {
+    async.eachSeries(testFiles, function (testFilePath) {
         let testFile = require(testFilePath);
-        
+
     })
 }
 
