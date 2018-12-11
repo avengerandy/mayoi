@@ -1,13 +1,12 @@
-let mockMap = new Map();
-
 module.exports = {
+    mockMap: new Map(),
     mock: function (realFunction, fakeFunction) {
-        mockMap.set(fakeFunction, realFunction);
+        this.mockMap.set(fakeFunction, realFunction);
         return fakeFunction;
     },
     unmock: function (fakeFunction) {
-        let realFunction = mockMap.get(fakeFunction);
-        mockMap.delete(fakeFunction);
+        let realFunction = this.mockMap.get(fakeFunction);
+        this.mockMap.delete(fakeFunction);
         return realFunction;
     }
 }

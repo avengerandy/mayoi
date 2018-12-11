@@ -1,12 +1,14 @@
-//const async = require("async");
-//const context = require("./util/Context.js");
-//const getAllTest = require("./util/getAllTest.js");
-//const process = require("process");
-//const 
+const async = require("async");
+const patchConfig = require("../src/patchConfig.js");
+const getAllTestFiles = require("../src/getAllTestFiles.js");
 
 module.exports = function(config) {
-
-
+    config = patchConfig(config);
+    let testFiles = getAllTestFiles(config);
+    async.eachSeries(testFiles, (testFilePath) => {
+        let testFile = require(testFilePath);
+        
+    })
 }
 
 /*
