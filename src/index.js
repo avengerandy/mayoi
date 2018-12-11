@@ -1,12 +1,17 @@
 const async = require("async");
-const process = require("process");
 const context = require("./util/Context.js");
 const getAllTest = require("./util/getAllTest.js");
-const config = require(process.argv[2] === undefined ? "./config.js" : process.argv[2]);
+const process = require("process");
+//const 
+
+module.exports = function(config) {
+
+
+}
 
 /*
-  simple tool that just use build-in function & async.js for test
-*/
+simple tool that just use build-in function & async.js for test
+
 
 config.startFunction();
 
@@ -22,3 +27,4 @@ async.waterfall(allTest, function(err) {
     console.log("----------------------------------------");
     config.endFunction();
 });
+*/
