@@ -12,7 +12,7 @@ module.exports.tests = [
     async function test_2() {
         let asyncFuncrion = new Promise(function (resolve, reject) {
             setTimeout(function () {
-                resolve("Promise2");
+                resolve("not Promise2");
             }, 500);
         });
         assert.equal("Promise2", await asyncFuncrion);
