@@ -36,4 +36,10 @@ module.exports = function(config) {
             });
         });
     }
+    
+    async.waterfall([
+        async () => await runIfFunction(config.startFunction),
+        async () => await runTest(),
+        async () => await runIfFunction(config.endFunction)
+    ], (error) => {if (error) throw error});
 }
