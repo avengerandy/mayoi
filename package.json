@@ -4,6 +4,7 @@
   "description": "a tiny nodeJS unittest framework like true JS",
   "main": "index.js",
   "scripts": {
+    "example": "node src/example.js",
     "test": "node test/test.js"
   },
   "repository": {

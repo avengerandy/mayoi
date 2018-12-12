@@ -3,7 +3,7 @@ const assert = require("assert");
 module.exports.startEach = function() {
     console.log("startEach");
 }
-module.exports.start = function() {
+module.exports.startFunction = function() {
     console.log("start");
 }
 module.exports.tests = [
@@ -14,7 +14,7 @@ module.exports.tests = [
         assert.equal(200, 200);
     }
 ];
-module.exports.end = function() {
+module.exports.endFunction = function() {
     console.log("end");
 }
 module.exports.endEach = function() {
