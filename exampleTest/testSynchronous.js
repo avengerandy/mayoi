@@ -1,15 +1,12 @@
 const assert = require("assert");
 
-let color = {
-    cyan: "\x1b[36m%s\x1b[0m", 
-    green: "\x1b[36m%s\x1b[32m"
-}
+let cyan = "\x1b[36m%s\x1b[0m";
 
 module.exports.startEach = function() {
-    console.log(color.green, "run mock testStartEachFunction");
+    console.log("run mock testStartEachFunction");
 }
 module.exports.startFunction = function() {
-    console.log(color.cyan, "run mock testFileStartFunction");
+    console.log(cyan, "run mock testFileStartFunction");
 }
 module.exports.tests = [
     function test_1() {
@@ -20,8 +17,8 @@ module.exports.tests = [
     }
 ];
 module.exports.endFunction = function() {
-    console.log(color.cyan, "run mock testFileEndFunction");
+    console.log(cyan, "run mock testFileEndFunction");
 }
 module.exports.endEach = function() {
-    console.log(color.green, "run mock testEndEachFunction");
+    console.log("run mock testEndEachFunction");
 }

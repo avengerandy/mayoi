@@ -30,7 +30,7 @@ module.exports = {
                         }
                         await runIfFunction(testFile.endEach);
                     } catch (error) {
-                        console.log("╠ " + "." + test.name + "\t=> fail");
+                        console.log("╠ " + count.subTestCount +"." + test.name + "\t=> fail");
                         printError(error);
                     }
                 }, async function (error) {
