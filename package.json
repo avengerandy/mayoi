@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/avengerandy/loli.git"
+    "url": "git+https://github.com/avengerandy/mayoi.git"
   },
   "keywords": [
     "unittest"
@@ -17,9 +17,9 @@
   "author": "MazeR",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/avengerandy/loli/issues"
+    "url": "https://github.com/avengerandy/mayoi/issues"
   },
-  "homepage": "https://github.com/avengerandy/loli#readme",
+  "homepage": "https://github.com/avengerandy/mayoi#readme",
   "dependencies": {
     "async": "^2.6.1"
   }
