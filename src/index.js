@@ -26,11 +26,11 @@ module.exports = {
                         await runIfFunction(test);
                         count.passTestCount++;
                         if (config.printPass) {
-                            console.log("╠ " + count.subTestCount + "." + test.name + "\t=> pass");
+                            console.log(`╠ ${count.subTestCount}.${test.name}\t=> pass`);
                         }
                         await runIfFunction(testFile.endEach);
                     } catch (error) {
-                        console.log("╠ " + count.subTestCount +"." + test.name + "\t=> fail");
+                        console.log(`╠ ${count.subTestCount}.${test.name}\t=> fail`);
                         printError(error);
                     }
                 }, async function (error) {
