@@ -1,6 +1,11 @@
 # Loli
 > a tiny nodeJS unittest framework like true JS
 
+## Screenshot
+<p align="center">
+    <img src = "https://raw.githubusercontent.com/avengerandy/mayoi/master/example.png" width="90%"/>
+</p>
+
 ## Introduction
 Loli is a small unittest framework that depend on only [**async**](http://caolan.github.io/async/). It just provide two compoment: 
 * a function for search your test file and run it
