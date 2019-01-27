@@ -1,4 +1,4 @@
-# Loli
+# mayoi
 > a tiny nodeJS unittest framework like true JS
 
 ## Screenshot
@@ -7,7 +7,7 @@
 </p>
 
 ## Introduction
-Loli is a small unittest framework that depend on only [**async**](http://caolan.github.io/async/). It just provide two compoment: 
+mayoi is a small unittest framework that depend on only [**async**](http://caolan.github.io/async/). It just provide two compoment: 
 * a function for search your test file and run it
 * a Mock Object for mock & unmock function that your test depend on
 
@@ -91,6 +91,23 @@ then you will see
 </p>
 
 ## Usage - hook function on test
+
+there are six type hook function
+
+| Name | Features |
+| --- | --- |
+| initStartFunction | run at whole test start |
+| startFunction | run at test file start |
+| startEach | run at each test function start |
+| initEndFunction | run at whole test end |
+| endFunction | run at test file end |
+| endEach | run at each test function end |
+
+### initStartFunction & initEndFunction
+
+### startFunction & endFunction
+
+### startEach & endEach
 
 ## Usage - mock function & object
 
