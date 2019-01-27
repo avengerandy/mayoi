@@ -1,6 +1,6 @@
 {
   "name": "mayoi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a tiny nodeJS unittest framework like true JS",
   "main": "src/index.js",
   "scripts": {
