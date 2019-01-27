@@ -30,7 +30,7 @@ touch mayoiTest/testAsynchronous.js
 ```
 
 index.js
-``` nodejs
+``` js
 const mayoi = require("mayoi");
 
 mayoi.run({
@@ -39,7 +39,7 @@ mayoi.run({
 ```
 
 testSynchronous.js
-``` nodejs
+``` js
 const assert = require("assert");
 
 module.exports.tests = [
@@ -53,7 +53,7 @@ module.exports.tests = [
 ```
 
 testAsynchronous.js
-``` nodejs
+``` js
 const assert = require('assert');
 
 module.exports.tests = [
@@ -78,7 +78,7 @@ node mayoiTest/index.js
 ```
 
 you can also add test script in package.json like
-``` nodejs
+``` js
 ...
 "scripts": {
 	"test": "node mayoiTest/index.js"
@@ -87,6 +87,9 @@ you can also add test script in package.json like
 ```
 
 then you will see
+<p align="center">
+    <img src = "https://raw.githubusercontent.com/avengerandy/mayoi/master/runTest.png" width="90%"/>
+</p>
 
 ### hook function on test
 
