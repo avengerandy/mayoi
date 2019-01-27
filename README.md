@@ -105,9 +105,55 @@ there are six type hook function
 
 ### initStartFunction & initEndFunction
 
-### startFunction & endFunction
+hook them when you run mayoi
 
-### startEach & endEach
+index.js
+``` js
+const mayoi = require("mayoi");
+
+mayoi.run({
+    root: "mayoiTest",
+    ignore: "index.js",
+	startFunction: () => console.log("\trun initStartFunction"),
+    endFunction: () => console.log("\trun finalEndFunction")
+});
+```
+
+### startFunction & endFunction & startEach & endEach
+
+hook them in the test file
+testSynchronous.js
+``` js
+const assert = require("assert");
+
+let cyan = "\x1b[36m%s\x1b[0m";
+
+module.exports.startEach = function() {
+    console.log("run mock testStartEachFunction");
+}
+module.exports.startFunction = function() {
+    console.log(cyan, "run mock testFileStartFunction");
+}
+module.exports.tests = [
+    function test_1() {
+        assert.equal("test_1", "test_1");
+    },
+    function test_2() {
+        assert.equal(200, 200);
+    }
+];
+module.exports.endFunction = function() {
+    console.log(cyan, "run mock testFileEndFunction");
+}
+module.exports.endEach = function() {
+    console.log("run mock testEndEachFunction");
+}
+```
+
+then you will see output like screenshot
+<p align="center">
+    <img src = "https://raw.githubusercontent.com/avengerandy/mayoi/master/runHook.png" width="90%"/>
+</p>
 
 ## Usage - mock function & object
 
