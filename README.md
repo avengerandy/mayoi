@@ -114,7 +114,7 @@ const mayoi = require("mayoi");
 mayoi.run({
     root: "mayoiTest",
     ignore: "index.js",
-	startFunction: () => console.log("\trun initStartFunction"),
+    startFunction: () => console.log("\trun initStartFunction"),
     endFunction: () => console.log("\trun finalEndFunction")
 });
 ```
