@@ -17,9 +17,7 @@ use npm install
 npm install mayoi
 ```
 
-## Usage
-
-### setup
+## Usage - setup
 
 create folder for test file
 ``` bash
@@ -91,14 +89,12 @@ then you will see
     <img src = "https://raw.githubusercontent.com/avengerandy/mayoi/master/runTest.png" width="90%"/>
 </p>
 
-### hook function on test
+## Usage - hook function on test
 
-### mock function & object
+## Usage - mock function & object
 
-## Developer
+## Developer - Get Source Code
 
-### Get Source Code
+## Developer - Tests
 
-### Tests
-
-### Architecture
+## Developer - Architecture
