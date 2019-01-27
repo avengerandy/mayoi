@@ -32,7 +32,8 @@ index.js
 const mayoi = require("mayoi");
 
 mayoi.run({
-    root: "mayoiTest"
+    root: "mayoiTest",
+	ignore: "index.js"
 });
 ```
 
@@ -79,7 +80,7 @@ you can also add test script in package.json like
 ``` js
 ...
 "scripts": {
-	"test": "node mayoiTest/index.js"
+    "test": "node mayoiTest/index.js"
 },
 ...
 ```
