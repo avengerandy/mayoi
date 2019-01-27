@@ -33,7 +33,7 @@ const mayoi = require("mayoi");
 
 mayoi.run({
     root: "mayoiTest",
-	ignore: "index.js"
+    ignore: "index.js"
 });
 ```
 
