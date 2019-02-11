@@ -186,10 +186,12 @@ module.exports.tests = [
 ];
 ```
 
-make sure the format is 
-**realFunction = mayoi.mock.mock(realFunction, fakeFunction);**
-**realFunction = mayoi.mock.unmock(realFunction);**
-because JS object is pass by sharing, the new fakeFunction should use **return** to return
+make sure the format is  
+
+**realFunction = mayoi.mock.mock(realFunction, fakeFunction);**  
+**realFunction = mayoi.mock.unmock(realFunction);**  
+
+because JS object is pass by sharing, the new fakeFunction should use **return** to repatriate it
 
 ## Developer - Get Source Code
 
