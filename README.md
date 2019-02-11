@@ -195,6 +195,12 @@ because JS object is pass by sharing, the new fakeFunction should use **return**
 
 ## Developer - Get Source Code
 
+to get source code just clone from github
+
 ## Developer - Tests
 
-## Developer - Architecture
+mayoi is a unittest framework, so it tests only use built-in assert function to test. run the **test/test.js**, if there's on error output, represent the tests are all pass.
+
+``` bash
+node test/test.js
+```
