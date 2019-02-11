@@ -157,6 +157,40 @@ then you will see output like screenshot
 
 ## Usage - mock function & object
 
+mayoi provide a mock tool for user, because of the tool is implement by save real object in a map then direct cover fake function on it variable, to get real function back from the map you need to unmock it after you test complete
+
+for example I have a function that return true and false both 50% probability should be tested.
+``` js
+module.exports = function () {
+    return Math.random() > 0.5;
+}
+```
+
+So I implement the test by mock the built-in random function.
+``` js
+const assert = require("assert");
+const mayoi = require("mayoi");
+const randomTF = require("../randomTF.js");
+
+module.exports.tests = [
+    function test_random1() {
+        Math.random = mayoi.mock.mock(Math.random, () => 0.2);
+        assert.equal(randomTF(), false);
+        Math.random = mayoi.mock.unmock(Math.random);
+    },
+    function test_random2() {
+        Math.random = mayoi.mock.mock(Math.random, () => 0.8);
+        assert.equal(randomTF(), true);
+        Math.random = mayoi.mock.unmock(Math.random);
+    }
+];
+```
+
+make sure the format is 
+**realFunction = mayoi.mock.mock(realFunction, fakeFunction);**
+**realFunction = mayoi.mock.unmock(realFunction);**
+because JS object is pass by sharing, the new fakeFunction should use **return** to return
+
 ## Developer - Get Source Code
 
 ## Developer - Tests
