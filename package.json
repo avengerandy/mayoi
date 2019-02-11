@@ -1,6 +1,6 @@
 {
   "name": "mayoi",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "a tiny nodeJS unittest framework like true JS",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,11 @@
     "url": "git+https://github.com/avengerandy/mayoi.git"
   },
   "keywords": [
-    "unittest"
+    "unittest",
+    "test",
+    "assertion",
+    "assert",
+    "testing"
   ],
   "author": "MazeR",
   "license": "MIT",
