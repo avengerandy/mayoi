@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "example": "node src/example.js",
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "testWithCoverage": "nyc node test/test.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
   "homepage": "https://github.com/avengerandy/mayoi#readme",
   "dependencies": {
     "async": "^2.6.1"
+  },
+  "devDependencies": {
+    "nyc": "^15.1.0"
   }
 }

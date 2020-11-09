@@ -9,16 +9,15 @@ console.log = Mock.mock(console.log, (log) => errorCache += `${log}\n`);
 try {
     assert.equal(1, 2);
 } catch (error) {
-    printError(error);  
+    printError(error);
 }
 
 assert.equal(
-    "║　　error message：1 == 2\n" + 
-    "║　  ┝　generatedMessage：true\n" + 
-    "║　  ┝　name：AssertionError [ERR_ASSERTION]\n" + 
-    "║　  ┝　code：ERR_ASSERTION\n" + 
-    "║　  ┝　actual：1\n" + 
-    "║　  ┝　expected：2\n" + 
+    "║　　error message：1 == 2\n" +
+    "║　  ┝　generatedMessage：true\n" +
+    "║　  ┝　code：ERR_ASSERTION\n" +
+    "║　  ┝　actual：1\n" +
+    "║　  ┝　expected：2\n" +
     "║　  ┝　operator：==\n"
 , errorCache);
 
