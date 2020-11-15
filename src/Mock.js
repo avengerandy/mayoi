@@ -5,8 +5,8 @@ module.exports = {
         return fakeFunction;
     },
     unmock: function (fakeFunction) {
-        let realFunction = this.mockMap.get(fakeFunction);
+        const realFunction = this.mockMap.get(fakeFunction);
         this.mockMap.delete(fakeFunction);
         return realFunction;
     }
-}
+};
