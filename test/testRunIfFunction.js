@@ -1,17 +1,17 @@
-const assert = require("assert");
-const runIfFunction = require("../src/runIfFunction.js");
+const assert = require('assert');
+const runIfFunction = require('../src/runIfFunction.js');
 
-let realFunction = () => "real";
-let fakeFunction = 5;
+const realFunction = () => 'real';
+const fakeFunction = 5;
 
 runIfFunction(realFunction).then((value) => {
-    assert.equal("real", value);
+    assert.strictEqual('real', value);
 }).catch((err) => {
-    throw err
+    throw err;
 });
 
 runIfFunction(fakeFunction).then((value) => {
-    assert.equal(undefined, value);
+    assert.strictEqual(undefined, value);
 }).catch((err) => {
-    throw err
+    throw err;
 });
