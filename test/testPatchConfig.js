@@ -1,38 +1,49 @@
-const assert = require("assert");
-const patchConfig = require("../src/patchConfig.js");
+const assert = require('assert');
+const patchConfig = require('../src/patchConfig.js');
 
-let defaultConfig = patchConfig();
-
-let intermediateConfig = patchConfig({
-    ignore: [],
-    printPass: false
-});
-
-let completeConfig = patchConfig({
-    root: "src",
-    ignore: ["index.js"],
-    printPass: true,
-    custom: "customConfig"
-});
-
-assert.deepEqual({
-    "root": "test",
-    "ignore": [
-        "index.js", 
-        "config.js"
-    ],
-    "printPass": true
+const defaultConfig = patchConfig();
+assert.deepStrictEqual({
+    root: 'test',
+    ignore: ['index.js', 'config.js'],
+    printPass: true
 }, defaultConfig);
 
-assert.deepEqual({
-    "root": "test",
-    "ignore": [],
-    "printPass": false
-}, intermediateConfig);
+const rootConfig = patchConfig({
+    root: 'root'
+});
+assert.deepStrictEqual({
+    root: 'root',
+    ignore: ['index.js', 'config.js'],
+    printPass: true
+}, rootConfig);
 
-assert.deepEqual({
-    root: "src",
-    ignore: ["index.js"],
-    printPass: true,
-    custom: "customConfig"
+const ignoreConfig = patchConfig({
+    ignore: []
+});
+assert.deepStrictEqual({
+    root: 'test',
+    ignore: [],
+    printPass: true
+}, ignoreConfig);
+
+const printPassConfig = patchConfig({
+    printPass: false
+});
+assert.deepStrictEqual({
+    root: 'test',
+    ignore: ['index.js', 'config.js'],
+    printPass: false
+}, printPassConfig);
+
+const completeConfig = patchConfig({
+    root: 'root',
+    ignore: ['ignore.js'],
+    printPass: false,
+    custom: 'someCustomConfig'
+});
+assert.deepStrictEqual({
+    root: 'root',
+    ignore: ['ignore.js'],
+    printPass: false,
+    custom: 'someCustomConfig'
 }, completeConfig);
