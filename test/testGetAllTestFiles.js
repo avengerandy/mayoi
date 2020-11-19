@@ -1,16 +1,36 @@
-const assert = require("assert");
-const process = require("process");
-const path = require("path");
-const patchConfig = require("../src/patchConfig.js");
-const getAllTestFiles = require("../src/getAllTestFiles.js");
+const assert = require('assert');
+const path = require('path');
 
-let intermediateConfig = patchConfig({
-    root: "exampleTest",
-    ignore: ["testAsynchronous.js"]
-});
+// mock fs & process module
+const fakeCmd = 'fakeCwd';
+const fakeRoot = 'fakeRoot';
+const Module = require('module');
+const originalRequire = Module.prototype.require;
+Module.prototype.require = function (requestPath) {
+    switch (requestPath) {
+        case 'fs':
+            return {
+                readdirSync: () => ['fakeFile1', 'fakeFile2', 'fakeFolder'],
+                lstatSync: function (filePath) {
+                    return {
+                        isFile: () => filePath !== path.join(fakeCmd, fakeRoot, 'fakeFolder')
+                    };
+                }
+            };
+        case 'process':
+            return {
+                cwd: () => fakeCmd
+            };
+    };
+    return originalRequire.apply(this, arguments);
+};
+const getAllTestFiles = require('../src/getAllTestFiles.js');
+Module.prototype.require = originalRequire;
 
-let testPath = path.join(process.cwd(), intermediateConfig.root);
-
-assert.deepEqual([
-    path.join(testPath, "testSynchronous.js")
-], getAllTestFiles(intermediateConfig));
+const config = {
+    root: fakeRoot,
+    ignore: ['fakeFile1']
+};
+assert.deepStrictEqual([
+    path.join(fakeCmd, fakeRoot, 'fakeFile2')
+], getAllTestFiles(config));
