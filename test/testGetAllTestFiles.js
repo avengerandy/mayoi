@@ -26,6 +26,7 @@ Module.prototype.require = function (requestPath) {
 };
 const getAllTestFiles = require('../src/getAllTestFiles.js');
 Module.prototype.require = originalRequire;
+delete require.cache[require.resolve('../src/getAllTestFiles.js')];
 
 const config = {
     root: fakeRoot,
