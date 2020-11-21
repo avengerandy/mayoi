@@ -1,24 +1,28 @@
-const assert = require("assert");
-const printError = require("../src/printError.js");
-const Mock = require("../src/Mock.js");
+const assert = require('assert');
+const printError = require('../src/printError.js');
+const Mock = require('../src/Mock.js');
 
-let errorCache = "";
+let errorCache = '';
 
-console.log = Mock.mock(console.log, (log) => errorCache += `${log}\n`);
+console.log = Mock.mock(console.log, function (log) {
+    errorCache += `${log}\n`;
+});
 
 try {
-    assert.equal(1, 2);
+    assert.strictEqual(1, 2);
 } catch (error) {
     printError(error);
 }
 
-assert.equal(
-    "║　　error message：1 == 2\n" +
-    "║　  ┝　generatedMessage：true\n" +
-    "║　  ┝　code：ERR_ASSERTION\n" +
-    "║　  ┝　actual：1\n" +
-    "║　  ┝　expected：2\n" +
-    "║　  ┝　operator：==\n"
-, errorCache);
+assert.strictEqual(`║    error message：Expected values to be strictly equal:
+
+1 !== 2
+
+║    ┝  generatedMessage：true
+║    ┝  code：ERR_ASSERTION
+║    ┝  actual：1
+║    ┝  expected：2
+║    ┝  operator：strictEqual
+`, errorCache);
 
 console.log = Mock.unmock(console.log);

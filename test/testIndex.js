@@ -20,12 +20,12 @@ setTimeout(() => {
         '----------------------------------------\n' +
         '╠ 1.test_1\t=> pass\n' +
         '╠ 2.test_2\t=> fail\n' +
-        "║　　error message：'Promise2' == 'not Promise2'\n" +
-        '║　  ┝　generatedMessage：true\n' +
-        '║　  ┝　code：ERR_ASSERTION\n' +
-        '║　  ┝　actual：Promise2\n' +
-        '║　  ┝　expected：not Promise2\n' +
-        '║　  ┝　operator：==\n' +
+        "║    error message：'Promise2' == 'not Promise2'\n" +
+        '║    ┝  generatedMessage：true\n' +
+        '║    ┝  code：ERR_ASSERTION\n' +
+        '║    ┝  actual：Promise2\n' +
+        '║    ┝  expected：not Promise2\n' +
+        '║    ┝  operator：==\n' +
         '----------------------------------------\n' +
         '2. test testSynchronous.js\n' +
         '----------------------------------------\n' +
