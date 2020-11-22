@@ -19,23 +19,27 @@ setTimeout(() => {
 ----------------------------------------
 1. test testAsynchronous.js
 ----------------------------------------
-╠ 1.test_1\t=> pass
-╠ 2.test_2\t=> fail
-║    error message：'Promise2' == 'not Promise2'
+╠ 1.test1\t=> pass
+╠ 2.test2\t=> fail
+║    error message：Expected values to be strictly equal:
+\x1B[32m+ actual\x1B[39m \x1B[31m- expected\x1B[39m
+
+\x1B[32m+\x1B[39m 'Promise2'
+\x1B[31m-\x1B[39m 'not Promise2'
 ║    ┝  generatedMessage：true
 ║    ┝  code：ERR_ASSERTION
 ║    ┝  actual：Promise2
 ║    ┝  expected：not Promise2
-║    ┝  operator：==
+║    ┝  operator：strictEqual
 ----------------------------------------
 2. test testSynchronous.js
 ----------------------------------------
 run mock testFileStartFunction
 run mock testStartEachFunction
-╠ 1.test_1\t=> pass
+╠ 1.test1\t=> pass
 run mock testEndEachFunction
 run mock testStartEachFunction
-╠ 2.test_2\t=> pass
+╠ 2.test2\t=> pass
 run mock testEndEachFunction
 run mock testFileEndFunction
 ----------------------------------------
