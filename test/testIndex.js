@@ -2,46 +2,47 @@ const assert = require('assert');
 const test = require('../src/index.js');
 const Mock = require('../src/Mock.js');
 
-let errorCache = "";
+let errorCache = '';
 
-console.log = Mock.mock(console.log, (log) => errorCache += `${log}\n`);
+console.log = Mock.mock(console.log, function (log) {
+    errorCache += `${log}\n`;
+});
 
 test.run({
-    root: "exampleTest",
-    startFunction: () => console.log("\trun initStartFunction"),
-    endFunction: () => console.log("\trun finalEndFunction")
+    root: 'exampleTest',
+    startFunction: () => console.log('\trun initStartFunction'),
+    endFunction: () => console.log('\trun finalEndFunction')
 });
 
 setTimeout(() => {
-    assert.equal(
-        '\trun initStartFunction\n' +
-        '----------------------------------------\n' +
-        '1. test testAsynchronous.js\n' +
-        '----------------------------------------\n' +
-        '╠ 1.test_1\t=> pass\n' +
-        '╠ 2.test_2\t=> fail\n' +
-        "║    error message：'Promise2' == 'not Promise2'\n" +
-        '║    ┝  generatedMessage：true\n' +
-        '║    ┝  code：ERR_ASSERTION\n' +
-        '║    ┝  actual：Promise2\n' +
-        '║    ┝  expected：not Promise2\n' +
-        '║    ┝  operator：==\n' +
-        '----------------------------------------\n' +
-        '2. test testSynchronous.js\n' +
-        '----------------------------------------\n' +
-        'run mock testFileStartFunction\n' +
-        'run mock testStartEachFunction\n' +
-        '╠ 1.test_1\t=> pass\n' +
-        'run mock testEndEachFunction\n' +
-        'run mock testStartEachFunction\n' +
-        '╠ 2.test_2\t=> pass\n' +
-        'run mock testEndEachFunction\n' +
-        'run mock testFileEndFunction\n' +
-        '----------------------------------------\n' +
-        '◉　Report：3／4\n' +
-        '----------------------------------------\n' +
-        '\trun finalEndFunction\n'
-    , errorCache);
+    assert.strictEqual(`\trun initStartFunction
+----------------------------------------
+1. test testAsynchronous.js
+----------------------------------------
+╠ 1.test_1\t=> pass
+╠ 2.test_2\t=> fail
+║    error message：'Promise2' == 'not Promise2'
+║    ┝  generatedMessage：true
+║    ┝  code：ERR_ASSERTION
+║    ┝  actual：Promise2
+║    ┝  expected：not Promise2
+║    ┝  operator：==
+----------------------------------------
+2. test testSynchronous.js
+----------------------------------------
+run mock testFileStartFunction
+run mock testStartEachFunction
+╠ 1.test_1\t=> pass
+run mock testEndEachFunction
+run mock testStartEachFunction
+╠ 2.test_2\t=> pass
+run mock testEndEachFunction
+run mock testFileEndFunction
+----------------------------------------
+◉  Report：3／4
+----------------------------------------
+\trun finalEndFunction
+`, errorCache);
 
     console.log = Mock.unmock(console.log);
 }, 2000);
