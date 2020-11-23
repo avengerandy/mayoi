@@ -1,0 +1,33 @@
+name: coding-style
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  coding-style-check:
+
+    runs-on: ubuntu-latest
+    
+    name: coding-style-check
+
+    steps:
+
+      - name: Checks out
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+          check-latest: true
+
+      - name: Install dependencies
+        run: npm install --no-progress
+
+      - name: Check with eslint
+        run: |
+          npx eslint src
+          npx eslint test
+          npx eslint exampleTest
