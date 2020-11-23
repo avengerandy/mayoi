@@ -10,7 +10,7 @@ jobs:
   coding-style-check:
 
     runs-on: ubuntu-latest
-    
+
     name: coding-style-check
 
     steps:
@@ -26,8 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm install --no-progress
 
-      - name: Check with eslint
-        run: |
-          npx eslint src
-          npx eslint test
-          npx eslint exampleTest
+      - name: Check with eslint (src)
+        run: npx eslint src
+
+      - name: Check with eslint (test)
+        run: npx eslint test
+
+      - name: Check with eslint (exampleTest)
+        run: npx eslint exampleTest
