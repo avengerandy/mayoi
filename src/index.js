@@ -60,7 +60,7 @@ module.exports = {
             });
         }
 
-        async.waterfall([
+        async.eachSeries([
             async () => await runIfFunction(config.startFunction),
             async () => await runTest(),
             async function () {
@@ -69,8 +69,8 @@ module.exports = {
                 console.log('----------------------------------------');
                 await runIfFunction(config.endFunction);
             }
-        ], function (error) {
-            if (error) throw error;
+        ], async function (func) {
+            await func();
         });
     },
     mock: Mock
