@@ -4,3 +4,4 @@ require('./testPatchConfig.js');
 require('./testGetAllTestFiles.js');
 require('./testPrintError.js');
 require('./testIndex.js');
+require('./testEachSeries.js');
