@@ -25,9 +25,7 @@
     "url": "https://github.com/avengerandy/mayoi/issues"
   },
   "homepage": "https://github.com/avengerandy/mayoi#readme",
-  "dependencies": {
-    "async": "^2.6.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^7.13.0",
     "eslint-config-standard": "^16.0.1",
