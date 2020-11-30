@@ -22,14 +22,13 @@ setTimeout(() => {
 ╠ 1.test1\t=> pass
 ╠ 2.test2\t=> fail
 ║    error message：Expected values to be strictly equal:
-\x1B[32m+ actual\x1B[39m \x1B[31m- expected\x1B[39m
 
-\x1B[32m+\x1B[39m 'Promise2'
-\x1B[31m-\x1B[39m 'not Promise2'
+1 !== 2
+
 ║    ┝  generatedMessage：true
 ║    ┝  code：ERR_ASSERTION
-║    ┝  actual：Promise2
-║    ┝  expected：not Promise2
+║    ┝  actual：1
+║    ┝  expected：2
 ║    ┝  operator：strictEqual
 ----------------------------------------
 2. test testSynchronous.js
