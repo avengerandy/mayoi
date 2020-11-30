@@ -1,10 +1,9 @@
-const path = require('path');
 const Mock = require('../src/Mock.js');
 const patchConfig = require('./patchConfig.js');
 const eachSeries = require('./eachSeries.js');
 const getAllTestFiles = require('./getAllTestFiles.js');
 const runIfFunction = require('./runIfFunction.js');
-const printError = require('../src/printError.js');
+const runTest = require('./runTest.js');
 
 module.exports = {
     run: async function (config) {
@@ -17,42 +16,9 @@ module.exports = {
             passTestCount: 0
         };
 
-        async function runTestFile (testFile) {
-            await eachSeries(testFile.tests, async function (test) {
-                count.subTestCount++;
-                try {
-                    await runIfFunction(testFile.startEach);
-                    await runIfFunction(test);
-                    count.passTestCount++;
-                    if (config.printPass) {
-                        console.log(`╠ ${count.subTestCount}.${test.name}\t=> pass`);
-                    }
-                    await runIfFunction(testFile.endEach);
-                } catch (error) {
-                    console.log(`╠ ${count.subTestCount}.${test.name}\t=> fail`);
-                    printError(error);
-                }
-            });
-            await runIfFunction(testFile.endFunction);
-            count.allSubTestCount += count.subTestCount;
-        }
-
-        async function runTest () {
-            await eachSeries(testFiles, async function (testFilePath) {
-                count.fileTestCount++;
-                const testFile = require(testFilePath);
-                console.log('----------------------------------------');
-                console.log(count.fileTestCount + '. test ' + path.basename(testFilePath));
-                console.log('----------------------------------------');
-                await runIfFunction(testFile.startFunction);
-                count.subTestCount = 0;
-                await runTestFile(testFile);
-            });
-        }
-
         await eachSeries([
             async () => await runIfFunction(config.startFunction),
-            async () => await runTest(),
+            async () => await runTest(testFiles, config, count),
             async function () {
                 console.log('----------------------------------------');
                 console.log('◉  Report：' + count.passTestCount + '／' + count.allSubTestCount);
