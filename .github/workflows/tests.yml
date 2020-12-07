@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-versions: ['10', '12', '14', '15']
+        node-versions: ['12', '14', '15']
         
     name: node ${{ matrix.node-versions }} test
 
