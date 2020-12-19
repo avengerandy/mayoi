@@ -11,7 +11,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: tests
+    strategy:
+      matrix:
+        node-versions: ['12', '14', '15']
+        
+    name: node ${{ matrix.node-versions }} test
 
     steps:
 
@@ -20,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node-versions }}
           check-latest: true
 
       - name: Install dependencies
