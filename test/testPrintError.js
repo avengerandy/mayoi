@@ -2,27 +2,18 @@ const assert = require('assert');
 const printError = require('../src/printError.js');
 const Mock = require('../src/Mock.js');
 
-let errorCache = '';
+const errorInstanceList = [];
 
-console.log = Mock.mock(console.log, function (log) {
-    errorCache += `${log}\n`;
+console.error = Mock.mock(console.error, function (error) {
+    errorInstanceList.push(error);
 });
 
 try {
     assert.strictEqual(1, 2);
 } catch (error) {
     printError(error);
+    assert.strictEqual(errorInstanceList.length, 1);
+    assert.strictEqual(errorInstanceList[0], error);
 }
 
-assert.strictEqual(`║    error message：Expected values to be strictly equal:
-
-1 !== 2
-
-║    ┝  generatedMessage：true
-║    ┝  code：ERR_ASSERTION
-║    ┝  actual：1
-║    ┝  expected：2
-║    ┝  operator：strictEqual
-`, errorCache);
-
-console.log = Mock.unmock(console.log);
+console.error = Mock.unmock(console.error);
