@@ -2,13 +2,20 @@ const assert = require('assert');
 const test = require('../src/index.js');
 const Mock = require('../src/Mock.js');
 
-let logCache = '';
+const consoleCallHistory = [];
 console.log = Mock.mock(console.log, function (log) {
-    logCache += `${log}\n`;
+    consoleCallHistory.push(log);
+});
+console.group = Mock.mock(console.group, function (label) {
+    consoleCallHistory.push('group label = ' + label);
+});
+console.groupEnd = Mock.mock(console.groupEnd, function (label) {
+    consoleCallHistory.push('groupEnd');
 });
 
 const errorInstanceList = [];
 console.error = Mock.mock(console.error, function (error) {
+    consoleCallHistory.push('error');
     errorInstanceList.push(error);
 });
 
@@ -19,28 +26,28 @@ test.run({
 });
 
 setTimeout(() => {
-    assert.strictEqual(`\trun initStartFunction
-----------------------------------------
-1. test testAsynchronous.js
-----------------------------------------
-╠ 1.test1\t=> pass
-╠ 2.test2\t=> fail
-----------------------------------------
-2. test testSynchronous.js
-----------------------------------------
-run mock testFileStartFunction
-run mock testStartEachFunction
-╠ 1.test1\t=> pass
-run mock testEndEachFunction
-run mock testStartEachFunction
-╠ 2.test2\t=> pass
-run mock testEndEachFunction
-run mock testFileEndFunction
-----------------------------------------
-◉  Report：3／4
-----------------------------------------
-\trun finalEndFunction
-`, logCache);
+    assert.deepStrictEqual([
+        '\trun initStartFunction',
+        'group label = 1. test testAsynchronous.js',
+        '1.test1: pass',
+        '2.test2: fail',
+        'error',
+        'groupEnd',
+        'group label = 2. test testSynchronous.js',
+        'run mock testFileStartFunction',
+        'run mock testStartEachFunction',
+        '1.test1: pass',
+        'run mock testEndEachFunction',
+        'run mock testStartEachFunction',
+        '2.test2: pass',
+        'run mock testEndEachFunction',
+        'run mock testFileEndFunction',
+        'groupEnd',
+        '----------------------------------------',
+        '◉  Report：3／4',
+        '----------------------------------------',
+        '\trun finalEndFunction'
+    ], consoleCallHistory);
 
     try {
         assert.strictEqual(1, 2);
@@ -50,5 +57,7 @@ run mock testFileEndFunction
     }
 
     console.log = Mock.unmock(console.log);
+    console.group = Mock.unmock(console.group);
+    console.groupEnd = Mock.unmock(console.groupEnd);
     console.error = Mock.unmock(console.error);
 }, 2000);

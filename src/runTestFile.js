@@ -5,19 +5,19 @@ const eachSeries = require('./eachSeries.js');
 module.exports = async function runTestFile (testFile, config, count) {
     await eachSeries(testFile.tests, async function (test) {
         count.subTestCount++;
+        await runIfFunction(testFile.startEach);
         try {
-            await runIfFunction(testFile.startEach);
             await runIfFunction(test);
             count.passTestCount++;
             if (config.printPass) {
-                console.log(`╠ ${count.subTestCount}.${test.name}\t=> pass`);
+                console.log(`${count.subTestCount}.${test.name}: pass`);
             }
-            await runIfFunction(testFile.endEach);
         } catch (error) {
-            console.log(`╠ ${count.subTestCount}.${test.name}\t=> fail`);
+            console.log(`${count.subTestCount}.${test.name}: fail`);
             printError(error);
+        } finally {
+            await runIfFunction(testFile.endEach);
         }
     });
-    await runIfFunction(testFile.endFunction);
     count.allSubTestCount += count.subTestCount;
 };

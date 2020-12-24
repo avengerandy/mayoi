@@ -1,6 +1,5 @@
 const Mock = require('../src/Mock.js');
 const patchConfig = require('./patchConfig.js');
-const eachSeries = require('./eachSeries.js');
 const getAllTestFiles = require('./getAllTestFiles.js');
 const runIfFunction = require('./runIfFunction.js');
 const runTest = require('./runTest.js');
@@ -16,18 +15,12 @@ module.exports = {
             passTestCount: 0
         };
 
-        await eachSeries([
-            async () => await runIfFunction(config.startFunction),
-            async () => await runTest(testFiles, config, count),
-            async function () {
-                console.log('----------------------------------------');
-                console.log('◉  Report：' + count.passTestCount + '／' + count.allSubTestCount);
-                console.log('----------------------------------------');
-                await runIfFunction(config.endFunction);
-            }
-        ], async function (func) {
-            await func();
-        });
+        await runIfFunction(config.startFunction);
+        await runTest(testFiles, config, count);
+        console.log('----------------------------------------');
+        console.log('◉  Report：' + count.passTestCount + '／' + count.allSubTestCount);
+        console.log('----------------------------------------');
+        await runIfFunction(config.endFunction);
     },
     mock: Mock
 };
