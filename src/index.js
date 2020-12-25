@@ -9,16 +9,14 @@ module.exports = {
         config = patchConfig(config);
         const testFiles = getAllTestFiles(config);
         const count = {
-            fileTestCount: 0,
-            allSubTestCount: 0,
-            subTestCount: 0,
-            passTestCount: 0
+            allTestCounter: 0,
+            allPassTestCounter: 0
         };
 
         await runIfFunction(config.startFunction);
         await runTest(testFiles, config, count);
         console.log('----------------------------------------');
-        console.log('◉  Report：' + count.passTestCount + '／' + count.allSubTestCount);
+        console.log('◉  Report：' + count.allPassTestCounter + '／' + count.allTestCounter);
         console.log('----------------------------------------');
         await runIfFunction(config.endFunction);
     },
