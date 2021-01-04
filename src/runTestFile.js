@@ -2,7 +2,7 @@ const runIfFunction = require('./runIfFunction.js');
 const printError = require('./printError.js');
 const eachSeries = require('./eachSeries.js');
 
-module.exports = async function runTestFile (testFile, config, count) {
+module.exports = async function (testFile, config, count) {
     await eachSeries(testFile.tests, async function (test) {
         await runIfFunction(testFile.startEach);
         try {
