@@ -3,22 +3,22 @@ const printError = require('./printError.js');
 const eachSeries = require('./eachSeries.js');
 
 module.exports = async function runTestFile (testFile, config, count) {
-    let testCounter = 0;
     await eachSeries(testFile.tests, async function (test) {
-        testCounter++;
         await runIfFunction(testFile.startEach);
         try {
             await runIfFunction(test);
             count.allPassTestCounter++;
             if (config.printPass) {
-                console.log(`${testCounter}.${test.name}: pass`);
+                console.log(`✔ ${test.name}`);
             }
         } catch (error) {
-            console.log(`${testCounter}.${test.name}: fail`);
+            console.log(`✘ ${test.name}`);
+            console.group();
             printError(error);
+            console.groupEnd();
         } finally {
             await runIfFunction(testFile.endEach);
         }
     });
-    count.allTestCounter += testCounter;
+    count.allTestCounter += testFile.tests.length;
 };

@@ -15,9 +15,8 @@ module.exports = {
 
         await runIfFunction(config.startFunction);
         await runTest(testFiles, config, count);
-        console.log('----------------------------------------');
-        console.log('◉  Report：' + count.allPassTestCounter + '／' + count.allTestCounter);
-        console.log('----------------------------------------');
+        console.log();
+        console.log(`report: ${count.allPassTestCounter} / ${count.allTestCounter} passing`);
         await runIfFunction(config.endFunction);
     },
     mock: Mock
