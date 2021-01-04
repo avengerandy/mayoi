@@ -2,7 +2,7 @@ const Mock = require('../src/Mock.js');
 const patchConfig = require('./patchConfig.js');
 const getAllTestFiles = require('./getAllTestFiles.js');
 const runIfFunction = require('./runIfFunction.js');
-const runTest = require('./runTest.js');
+const runTest = require('./runTestFolder.js');
 
 module.exports = {
     run: async function (config) {
