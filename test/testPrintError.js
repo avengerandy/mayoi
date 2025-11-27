@@ -13,7 +13,7 @@ try {
 } catch (error) {
     printError(error);
     assert.strictEqual(errorInstanceList.length, 1);
-    assert.strictEqual(errorInstanceList[0], error);
+    assert.strictEqual(errorInstanceList[0], "\n" + error.message);
 }
 
 console.error = Mock.unmock(console.error);

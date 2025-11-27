@@ -1,7 +1,7 @@
 {
   "name": "mayoi",
   "version": "1.0.6",
-  "description": "a tiny nodeJS unittest framework like true JS",
+  "description": "a tiny nodeJS unittest framework with zero dependencies",
   "main": "src/index.js",
   "scripts": {
     "example": "node src/example.js",

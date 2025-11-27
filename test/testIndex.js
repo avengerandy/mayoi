@@ -56,7 +56,7 @@ setTimeout(() => {
         assert.strictEqual(1, 2);
     } catch (error) {
         assert.strictEqual(errorInstanceList.length, 1);
-        assert.deepStrictEqual(errorInstanceList[0], error);
+        assert.deepStrictEqual(errorInstanceList[0], "\n" + error.message);
     }
 
     console.log = Mock.unmock(console.log);

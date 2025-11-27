@@ -1,3 +1,3 @@
 module.exports = function (error) {
-    console.error(error);
+    console.error("\n" + error.message);
 };

@@ -1,5 +1,5 @@
 # mayoi
-> a tiny nodeJS unittest framework like true JS
+> a tiny nodeJS unittest framework with zero dependencies
 
 ## Screenshot
 <p align="center">
@@ -7,9 +7,9 @@
 </p>
 
 ## Introduction
-mayoi is a small unittest framework that depend on only [**async**](http://caolan.github.io/async/). It just provide two compoment: 
+mayoi just provide two compoment:
 * a function for search your test file and run it
-* a Mock Object for mock & unmock function that your test depend on
+* a Mock Object for mock & unmock buildin function that your test depend on
 
 ## Installation
 use npm install
@@ -186,10 +186,10 @@ module.exports.tests = [
 ];
 ```
 
-make sure the format is  
+make sure the format is
 
-**realFunction = mayoi.mock.mock(realFunction, fakeFunction);**  
-**realFunction = mayoi.mock.unmock(realFunction);**  
+**realFunction = mayoi.mock.mock(realFunction, fakeFunction);**
+**realFunction = mayoi.mock.unmock(realFunction);**
 
 because JS object is pass by sharing, the new fakeFunction should use **return** to repatriate it
 
